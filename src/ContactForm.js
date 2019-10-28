@@ -7,12 +7,16 @@ import * as Yup from 'yup';
 const CONTAINER = styled.div`
   background: #F7F9FA;
   height: auto;
-  width: 60%;
-  margin: 10em auto;
+  width: 90%;
+  margin: 5em auto;
   color: snow;
   -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+
+  @media(min-width: 786px) {
+    width: 60%;
+  }
 
   label {
     color: #24B9B6;
@@ -93,8 +97,10 @@ const ContactForm = () => {
       initialValues={{ name:"", email:"", phone:"", blog:""}}
       validationSchema={validationSchema}
       onSubmit={(values, {setSubmitting, resetForm}) => {
+          // When button submits form and form is in the process of submitting, submit button is disabled
           setSubmitting(true);
 
+          // Simulate submitting to database, shows us values submitted, resets form
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             resetForm();
@@ -170,7 +176,7 @@ const ContactForm = () => {
                 <div className="error-message">{errors.blog}</div>
               ): null}
           </Form.Group>
-
+          {/*Submit button that is disabled after button is clicked/form is in the process of submitting*/}
           <BUTTON variant="primary" type="submit" disabled={isSubmitting}>
             Submit
           </BUTTON>
