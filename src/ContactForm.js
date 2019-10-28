@@ -74,18 +74,18 @@ const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?
 // Schema for yup
 const validationSchema = Yup.object().shape({
   name: Yup.string()
-  .min(2, "Names must has at least 2 characters")
-  .max(100, "Names can't be longer than 100 characters")
+  .min(2, "*Names must have at least 2 characters")
+  .max(100, "*Names can't be longer than 100 characters")
   .required("*Name is required"),
   email: Yup.string()
-  .email("Must be a valid email address")
-  .max(100, "Email must be less than 100 characters")
+  .email("*Must be a valid email address")
+  .max(100, "*Email must be less than 100 characters")
   .required("*Email is required"),
   phone: Yup.string()
-  .matches(phoneRegExp, "Phone number is not valid")
+  .matches(phoneRegExp, "*Phone number is not valid")
   .required("*Phone number required"),
   blog: Yup.string()
-  .url("Must enter URL")
+  .url("*Must enter URL in http://www.example.com format")
   .required("*URL required")
 });
 
